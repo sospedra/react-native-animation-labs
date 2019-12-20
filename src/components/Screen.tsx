@@ -1,7 +1,10 @@
 import React from 'react'
 import { SafeAreaView, ViewStyle } from 'react-native'
+import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
-export type ScreenNav = React.FC<{}> & {
+export type ScreenNav = React.FC<{
+  navigation: NavigationScreenProp<NavigationState>
+}> & {
   navigationOptions: { title: string }
 }
 

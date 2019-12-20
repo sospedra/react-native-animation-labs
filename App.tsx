@@ -5,21 +5,27 @@ import { createStackNavigator } from 'react-navigation-stack'
 import Touchable from 'react-native-platform-touchable'
 import Intro from './src/Intro'
 import Transition from './src/Transition'
+import UseTransition from './src/UseTransition'
+import { ScreenNav } from './src/components/Screen'
 
-function Home (props) {
+const Home: ScreenNav = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList<string>
-        data={[ 'Intro', 'Transition' ]}
+        data={['Intro', 'Transition', 'UseTransition']}
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
           <Touchable style={styles.button} onPress={() => props.navigation.navigate(item)}>
-            <Text style={{ fontSize: 16 }}>{item}</Text>
+            <Text style={styles.buttonText}>{item}</Text>
           </Touchable>
         )}
       />
     </SafeAreaView>
   )
+}
+
+Home.navigationOptions = {
+  title: 'Animation Labs'
 }
 
 const styles = StyleSheet.create({
@@ -32,15 +38,17 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: '#cddddd',
     marginBottom: 8,
-  }
+  },
+  buttonText: { fontSize: 16 }
 })
 
 const AppNavigator = createStackNavigator({
   Home,
   Intro,
   Transition,
+  UseTransition,
 }, {
-  initialRouteName: 'Transition'
+  initialRouteName: 'UseTransition'
 })
 
 export default createAppContainer(AppNavigator)

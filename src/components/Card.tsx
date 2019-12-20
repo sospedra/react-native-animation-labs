@@ -3,7 +3,7 @@ import { View, StyleSheet, ViewStyle } from 'react-native'
 import randomcolor from 'randomcolor'
 
 const Card: React.FC<{
-  style: ViewStyle
+  style?: ViewStyle
 }> = (props) => {
   const color = useMemo(() => randomcolor(), [])
   return (
