@@ -8,6 +8,7 @@ import Transition from './src/Transition'
 import UseTransition from './src/UseTransition'
 import Timing from './src/Timing'
 import Pan from './src/Pan'
+import Liquid from './src/Liquid'
 
 const routes = {
   Home,
@@ -16,6 +17,7 @@ const routes = {
   UseTransition,
   Timing,
   Pan,
+  Liquid,
 }
 function Home (props) {
   return (
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
 })
 
 const AppNavigator = createStackNavigator(routes, {
-  initialRouteName: 'Pan'
+  initialRouteName: 'Liquid',
 })
 
 export default createAppContainer(AppNavigator)
