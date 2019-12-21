@@ -7,6 +7,7 @@ import Intro from './src/Intro'
 import Transition from './src/Transition'
 import UseTransition from './src/UseTransition'
 import Timing from './src/Timing'
+import Pan from './src/Pan'
 
 const routes = {
   Home,
@@ -14,6 +15,7 @@ const routes = {
   Transition,
   UseTransition,
   Timing,
+  Pan,
 }
 function Home (props) {
   return (
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
 })
 
 const AppNavigator = createStackNavigator(routes, {
-  initialRouteName: 'Timing'
+  initialRouteName: 'Pan'
 })
 
 export default createAppContainer(AppNavigator)

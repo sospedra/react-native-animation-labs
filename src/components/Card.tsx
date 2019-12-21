@@ -4,7 +4,7 @@ import randomcolor from 'randomcolor'
 
 const Card: React.FC<{
   style?: ViewStyle
-  circle
+  circle?: boolean
 }> = (props) => {
   const color = useMemo(() => randomcolor(), [])
   return (
