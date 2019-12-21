@@ -8,6 +8,11 @@
     "eject": "expo eject",
     "test:format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "dependencies": {
     "expo": "~36.0.0",
     "randomcolor": "^0.5.4",
@@ -32,7 +37,9 @@
     "@types/react-native": "~0.60.23",
     "@types/react-native-platform-touchable": "^1.1.1",
     "babel-preset-expo": "~8.0.0",
+    "husky": "^3.1.0",
     "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "typescript": "~3.6.3"
   },
   "private": true
