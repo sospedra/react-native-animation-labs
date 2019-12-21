@@ -11,12 +11,17 @@ export type ScreenNav = React.FC<{
 const Screen: React.FC<{
   style?: ViewStyle
 }> = (props) => (
-  <SafeAreaView style={[{
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'space-around',
-    width: '100%',
-  }, props.style]}>
+  <SafeAreaView
+    style={[
+      {
+        flex: 1,
+        backgroundColor: '#fff',
+        justifyContent: 'space-around',
+        width: '100%',
+      },
+      props.style,
+    ]}
+  >
     {props.children}
   </SafeAreaView>
 )

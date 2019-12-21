@@ -8,12 +8,14 @@ const Card: React.FC<{
 }> = (props) => {
   const color = useMemo(() => randomcolor(), [])
   return (
-    <View style={[
-      styles.card,
-      props.circle && styles.circle,
-      props.style,
-      { backgroundColor: color },
-    ]} />
+    <View
+      style={[
+        styles.card,
+        props.circle && styles.circle,
+        props.style,
+        { backgroundColor: color },
+      ]}
+    />
   )
 }
 
@@ -22,14 +24,14 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 150,
     borderRadius: 8,
-    margin: 8
+    margin: 8,
   },
   circle: {
     width: 100,
     height: 100,
     borderRadius: 100 / 2,
     flex: 0,
-  }
+  },
 })
 
 export default Card

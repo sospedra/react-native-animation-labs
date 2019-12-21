@@ -5,10 +5,7 @@ import Card from '../components/Card'
 import { PanGestureHandler, State } from 'react-native-gesture-handler'
 import { onGestureEvent } from 'react-native-redash'
 
-const {
-  Value,
-  event,
-} = Animated
+const { Value } = Animated
 
 const Pan: ScreenNav = () => {
   const state = new Value(State.UNDETERMINED)
@@ -23,10 +20,15 @@ const Pan: ScreenNav = () => {
   return (
     <Screen>
       <PanGestureHandler {...gestureHandler}>
-        <Animated.View style={{ flex: 1, transform: [
-          { translateX: translationX },
-          { translateY: translationY }
-        ]}}>
+        <Animated.View
+          style={{
+            flex: 1,
+            transform: [
+              { translateX: translationX },
+              { translateY: translationY },
+            ],
+          }}
+        >
           <Card style={{ width: 200 }} />
         </Animated.View>
       </PanGestureHandler>
@@ -35,7 +37,7 @@ const Pan: ScreenNav = () => {
 }
 
 Pan.navigationOptions = {
-  title: 'Pan'
+  title: 'Pan',
 }
 
 export default Pan

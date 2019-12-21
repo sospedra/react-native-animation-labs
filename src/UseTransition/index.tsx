@@ -15,36 +15,41 @@ const UseTransition: ScreenNav = () => {
     <Screen style={styles.screen}>
       {[0, 1, 2].map((i) => {
         const direction = i === 0 ? -1 : i === 1 ? 0 : 1
-        const rotate = multiply(direction, interpolate(transition, {
-          inputRange: [0, 1],
-          outputRange: [0, Math.PI / 6]
-        }))
+        const rotate = multiply(
+          direction,
+          interpolate(transition, {
+            inputRange: [0, 1],
+            outputRange: [0, Math.PI / 6],
+          }),
+        )
         return (
-          <Animated.View key={i} style={[
-            styles.overlay,
-            {transform: [
-              { translateX: -109 },
-              { rotate: rotate },
-              { translateX: 109 },
+          <Animated.View
+            key={i}
+            style={[
+              styles.overlay,
+              {
+                transform: [
+                  { translateX: -109 },
+                  { rotate: rotate },
+                  { translateX: 109 },
+                ],
+              },
             ]}
-          ]}>
+          >
             <Card style={{ width: 250, flex: 0 }} />
           </Animated.View>
         )
       })}
 
       <View style={styles.section}>
-        <Button
-          title='Toggle'
-          onPress={() => setIsToggle(!isToggle)}
-        />
+        <Button title='Toggle' onPress={() => setIsToggle(!isToggle)} />
       </View>
     </Screen>
   )
 }
 
 UseTransition.navigationOptions = {
-  title: 'useTransition'
+  title: 'useTransition',
 }
 
 const styles = StyleSheet.create({
@@ -59,7 +64,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'space-around',
     width: '100%',
-  }
+  },
 })
 
 export default UseTransition

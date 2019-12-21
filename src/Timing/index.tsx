@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { View, Button, StyleSheet, Dimensions } from 'react-native'
 import Animated, { Easing } from 'react-native-reanimated'
-import { useTransition } from 'react-native-redash'
 import Screen, { ScreenNav } from '../components/Screen'
 import Card from '../components/Card'
 
 const HALF = Dimensions.get('window').width / 2 - 50
 const {
   startClock,
-  stopClock,
   clockRunning,
   Clock,
   Extrapolate,
@@ -50,7 +48,7 @@ const runTime = (clock: Animated.Clock) => {
       set(state.frameTime, 0),
       set(state.time, 0),
     ]),
-    state.position
+    state.position,
   ])
 }
 
@@ -69,37 +67,32 @@ const Timing: ScreenNav = () => {
     extrapolate: Extrapolate.CLAMP,
   })
 
-  useCode(() => block([
-    set(progress, runTime(clock))
-  ]), [])
+  useCode(() => block([set(progress, runTime(clock))]), [])
 
   return (
     <Screen style={styles.screen}>
       {bubbles.map((bubble, i) => (
-        <Animated.View key={i} style={[
-          styles.bubble,
-          bubble,
-          { transform: [
-            { translateX: x },
-            { translateY: y },
-          ] }
-        ]}>
+        <Animated.View
+          key={i}
+          style={[
+            styles.bubble,
+            bubble,
+            { transform: [{ translateX: x }, { translateY: y }] },
+          ]}
+        >
           <Card circle />
         </Animated.View>
       ))}
 
       <View style={styles.section}>
-        <Button
-          title='Toggle'
-          onPress={() => setIsToggle(!isToggle)}
-        />
+        <Button title='Toggle' onPress={() => setIsToggle(!isToggle)} />
       </View>
     </Screen>
   )
 }
 
 Timing.navigationOptions = {
-  title: 'Timing'
+  title: 'Timing',
 }
 
 const styles = StyleSheet.create({
@@ -112,7 +105,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'space-around',
     width: '100%',
-  }
+  },
 })
 
 export default Timing

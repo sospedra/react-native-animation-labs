@@ -1,6 +1,10 @@
 import React, { useState, useRef } from 'react'
 import { View, Dimensions, Button, ViewStyle, StyleSheet } from 'react-native'
-import { Transitioning, Transition, TransitioningView } from 'react-native-reanimated'
+import {
+  Transitioning,
+  Transition,
+  TransitioningView,
+} from 'react-native-reanimated'
 import Screen, { ScreenNav } from '../components/Screen'
 import Card from '../components/Card'
 
@@ -8,7 +12,7 @@ type Layout = {
   id: string
   name: string
   layout: {
-    container: ViewStyle,
+    container: ViewStyle
     child?: ViewStyle
   }
 }
@@ -17,8 +21,8 @@ const column: Layout = {
   id: 'col',
   name: 'col',
   layout: {
-    container: {}
-  }
+    container: {},
+  },
 }
 
 const row: Layout = {
@@ -27,9 +31,9 @@ const row: Layout = {
   layout: {
     container: {
       flexDirection: 'row',
-      alignItems: 'center'
-    }
-  }
+      alignItems: 'center',
+    },
+  },
 }
 
 const wrap: Layout = {
@@ -43,22 +47,21 @@ const wrap: Layout = {
     },
     child: {
       flex: 0,
-      width: Dimensions.get('window').width / 2 - 16
-    }
-  }
+      width: Dimensions.get('window').width / 2 - 16,
+    },
+  },
 }
 
 const TransitionLab: ScreenNav = () => {
   const [{ layout }, setLayout] = useState(column)
   const ref = useRef<TransitioningView>(null)
-  
+
   return (
     <Screen>
       <Transitioning.View
-        transition={<Transition.Change
-          durationMs={400}
-          interpolation='easeInOut'
-        />}
+        transition={
+          <Transition.Change durationMs={400} interpolation='easeInOut' />
+        }
         ref={ref}
         style={[styles.expand, layout.container]}
       >
@@ -86,7 +89,7 @@ const TransitionLab: ScreenNav = () => {
 }
 
 TransitionLab.navigationOptions = {
-  title: 'Transition'
+  title: 'Transition',
 }
 
 const styles = StyleSheet.create({
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'space-around',
     width: '100%',
-  }
+  },
 })
 
 export default TransitionLab

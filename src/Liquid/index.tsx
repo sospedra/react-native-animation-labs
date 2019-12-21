@@ -6,7 +6,7 @@ const Liquid: ScreenNav = () => {
 }
 
 Liquid.navigationOptions = {
-  title: 'Liquid'
+  title: 'Liquid',
 }
 
 export default Liquid

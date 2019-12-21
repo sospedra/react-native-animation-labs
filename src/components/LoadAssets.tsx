@@ -1,36 +1,36 @@
-import React, { ReactElement, useEffect, useState } from "react";
-import { AppLoading } from "expo";
-import { Asset } from "expo-asset";
-import * as Font from "expo-font";
+import React, { ReactElement, useEffect, useState } from 'react'
+import { AppLoading } from 'expo'
+import { Asset } from 'expo-asset'
+import * as Font from 'expo-font'
 
-export type FontSource = Parameters<typeof Font.loadAsync>[0];
+export type FontSource = Parameters<typeof Font.loadAsync>[0]
 const usePromiseAll = (promises: Promise<void | void[]>[], cb: () => void) =>
   useEffect(() => {
-    (async () => {
-      await Promise.all(promises);
-      cb();
-    })();
-  });
+    ;(async () => {
+      await Promise.all(promises)
+      cb()
+    })()
+  })
 
 const useLoadAssets = (assets: number[], fonts: FontSource): boolean => {
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(false)
   usePromiseAll(
-    [Font.loadAsync(fonts), ...assets.map(asset => Asset.loadAsync(asset))],
-    () => setReady(true)
-  );
-  return ready;
-};
+    [Font.loadAsync(fonts), ...assets.map((asset) => Asset.loadAsync(asset))],
+    () => setReady(true),
+  )
+  return ready
+}
 
 interface LoadAssetsProps {
-  fonts?: FontSource;
-  assets?: number[];
-  children: ReactElement | ReactElement[];
+  fonts?: FontSource
+  assets?: number[]
+  children: ReactElement | ReactElement[]
 }
 
 export default ({ assets, fonts, children }: LoadAssetsProps) => {
-  const ready = useLoadAssets(assets || [], fonts || {});
+  const ready = useLoadAssets(assets || [], fonts || {})
   if (!ready) {
-    return <AppLoading />;
+    return <AppLoading />
   }
-  return <>{children}</>;
-};
+  return <>{children}</>
+}

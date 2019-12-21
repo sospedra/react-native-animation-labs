@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test:format": "prettier-standard \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "expo": "~36.0.0",
@@ -31,6 +32,7 @@
     "@types/react-native": "~0.60.23",
     "@types/react-native-platform-touchable": "^1.1.1",
     "babel-preset-expo": "~8.0.0",
+    "prettier-standard": "^16.1.0",
     "typescript": "~3.6.3"
   },
   "private": true
