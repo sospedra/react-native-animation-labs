@@ -23,7 +23,7 @@ const {
   Extrapolate,
 } = Animated
 
-export default function App () {
+export default function App() {
   const [isVisible, setIsVisible] = useState(true)
   const { time, clock, progress } = useMemoOne(
     () => ({
