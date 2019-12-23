@@ -1,9 +1,9 @@
 import React from 'react'
 import Animated from 'react-native-reanimated'
-import Screen, { ScreenNav } from '../components/Screen'
-import Card from '../components/Card'
 import { PanGestureHandler, State } from 'react-native-gesture-handler'
 import { onGestureEvent } from 'react-native-redash'
+import Card from '../components/Card'
+import Screen, { ScreenNav } from '../components/Screen'
 
 const { Value } = Animated
 

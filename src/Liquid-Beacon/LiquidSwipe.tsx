@@ -14,6 +14,7 @@ import {
 } from './WeaveHelpers'
 import Content, { ContentProps } from './Content'
 import Button from './Button'
+import { ScreenNav } from '../components/Screen'
 
 export const assets = [
   require('./assets/firstPageImage.png'),
@@ -23,21 +24,36 @@ export const assets = [
 const front: ContentProps = {
   backgroundColor: '#4d1168',
   source: assets[1],
-  title1: 'For',
-  title2: 'Gamers',
+  title1: 'Animated',
+  title2: 'Attatop',
   color: '#fd5587',
 }
 
 const back: ContentProps = {
   backgroundColor: 'white',
   source: assets[0],
-  title1: 'Online',
-  title2: 'Gambling',
+  title1: 'Animated',
+  title2: 'Background',
   color: 'black',
 }
 
 const { width } = Dimensions.get('window')
-const { Value, cond, multiply, divide, interpolate } = Animated
+const maxWidth = width - initialSideWidth
+const {
+  Value,
+  SpringUtils,
+  Clock,
+  block,
+  spring,
+  startClock,
+  clockRunning,
+  stopClock,
+  set,
+  cond,
+  multiply,
+  divide,
+  interpolate,
+} = Animated
 
 const styles = StyleSheet.create({
   container: {
@@ -45,17 +61,36 @@ const styles = StyleSheet.create({
   },
 })
 
-const followPointer = (y) => {
-  return y
+export const followPointer = (value: Animated.Node<number>) => {
+  const clock = new Clock()
+  const config = SpringUtils.makeDefaultConfig()
+  const state = {
+    position: new Value(0),
+    velocity: new Value(0),
+    time: new Value(0),
+    finished: new Value(0),
+  }
+
+  return block([
+    startClock(clock),
+    set(config.toValue, value),
+    spring(clock, state, config),
+    state.position,
+  ])
 }
 
-export default () => {
-  const progress = 0
+const LiquidBeacon: ScreenNav = () => {
   const isBack = new Value(0)
   const y = new Value(initialWaveCenter)
   const state = new Value(State.UNDETERMINED)
-  const gestureHandler = onGestureEvent({ y, state })
+  const translationX = new Value(0)
+  const velocityX = new Value(0)
+  const gestureHandler = onGestureEvent({ y, state, translationX, velocityX })
   const centerY = followPointer(y)
+  const progress = interpolate(translationX, {
+    inputRange: [-maxWidth, 0],
+    outputRange: [0.4, 0],
+  })
   const horRadius = waveHorRadius(progress)
   const vertRadius = waveVertRadius(progress)
   const sWidth = sideWidth(progress)
@@ -65,9 +100,14 @@ export default () => {
       <PanGestureHandler {...gestureHandler}>
         <Animated.View style={StyleSheet.absoluteFill}>
           <Weave sideWidth={sWidth} {...{ centerY, horRadius, vertRadius }} />
-          <Button />
         </Animated.View>
       </PanGestureHandler>
     </View>
   )
 }
+
+LiquidBeacon.navigationOptions = {
+  title: 'Liquid Beacon',
+}
+
+export default LiquidBeacon

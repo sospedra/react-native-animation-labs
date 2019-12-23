@@ -172,7 +172,7 @@ export default ({ centerY, horRadius, vertRadius, sideWidth }: WeaveProps) => {
   const d = commands.reduce((acc, c) => concat(acc, c))
   return (
     <Svg {...{ width, height }}>
-      <AnimatedPath {...{ d }} fill='black' />
+      <AnimatedPath {...{ d }} fill='purple' />
     </Svg>
   )
 }

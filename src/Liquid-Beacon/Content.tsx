@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   description: {
-    opacity: 0.5,
+    opacity: 1,
     fontSize: 16,
   },
 })
@@ -41,7 +41,6 @@ export default ({
         justifyContent: 'space-around',
       }}
     >
-      <Image {...{ source }} />
       <View>
         <Text style={[styles.title1, { color }]}>{title1}</Text>
         <Text style={[styles.title2, { color }]}>{title2}</Text>

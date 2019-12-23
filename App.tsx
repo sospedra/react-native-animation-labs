@@ -1,6 +1,10 @@
 import React from 'react'
 import { Text, SafeAreaView, StyleSheet } from 'react-native'
-import { createAppContainer, FlatList } from 'react-navigation'
+import {
+  createAppContainer,
+  FlatList,
+  NavigationScreenProp,
+} from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import Touchable from 'react-native-platform-touchable'
 import Intro from './src/Intro'
@@ -9,6 +13,7 @@ import UseTransition from './src/UseTransition'
 import Timing from './src/Timing'
 import Pan from './src/Pan'
 import Liquid from './src/Liquid'
+import LiquidBeacon from './src/Liquid-Beacon'
 
 const routes = {
   Home,
@@ -18,15 +23,19 @@ const routes = {
   Timing,
   Pan,
   Liquid,
+  LiquidBeacon,
 }
-function Home (props) {
+function Home(props: { navigation: NavigationScreenProp<{}> }) {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList<string>
         data={Object.keys(routes)}
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
-          <Touchable style={styles.button} onPress={() => props.navigation.navigate(item)}>
+          <Touchable
+            style={styles.button}
+            onPress={() => props.navigation.navigate(item)}
+          >
             <Text style={styles.buttonText}>{item}</Text>
           </Touchable>
         )}
@@ -36,7 +45,7 @@ function Home (props) {
 }
 
 Home.navigationOptions = {
-  title: 'Animation Labs'
+  title: 'Animation Labs',
 }
 
 const styles = StyleSheet.create({
@@ -50,11 +59,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#cddddd',
     marginBottom: 8,
   },
-  buttonText: { fontSize: 16 }
+  buttonText: { fontSize: 16 },
 })
 
 const AppNavigator = createStackNavigator(routes, {
-  initialRouteName: 'Liquid',
+  initialRouteName: 'LiquidBeacon',
 })
 
 export default createAppContainer(AppNavigator)
