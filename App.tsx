@@ -7,23 +7,25 @@ import {
 } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import Touchable from 'react-native-platform-touchable'
+import Bullets from './src/Bullets'
 import Intro from './src/Intro'
-import Transition from './src/Transition'
-import UseTransition from './src/UseTransition'
-import Timing from './src/Timing'
-import Pan from './src/Pan'
 import Liquid from './src/Liquid'
 import LiquidBeacon from './src/Liquid-Beacon'
+import Pan from './src/Pan'
+import Timing from './src/Timing'
+import Transition from './src/Transition'
+import UseTransition from './src/UseTransition'
 
 const routes = {
   Home,
+  Bullets,
   Intro,
-  Transition,
-  UseTransition,
-  Timing,
-  Pan,
   Liquid,
   LiquidBeacon,
+  Pan,
+  Timing,
+  Transition,
+  UseTransition,
 }
 function Home(props: { navigation: NavigationScreenProp<{}> }) {
   return (
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
 })
 
 const AppNavigator = createStackNavigator(routes, {
-  initialRouteName: 'LiquidBeacon',
+  initialRouteName: 'Bullets',
 })
 
 export default createAppContainer(AppNavigator)
